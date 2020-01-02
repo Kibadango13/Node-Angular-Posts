@@ -1,0 +1,40 @@
+//Create New App
+ng new my-app
+
+//Start Server
+ng serve --open
+
+//
+ng generate component posts/post-create
+ng generate component posts/post-list
+
+ng generate component global/header
+ng generate component global/logo
+ng generate component global/search
+ng generate component global/util-nav
+ng generate component global/menu
+ng generate component global/footer
+
+//angular material install 
+ng add @angular/material
+
+//git 
+git init
+git commit -m "first commit"
+git push -u origin master
+
+
+//Pasos para agregar node al proyecto.
+1. Crear carpeta backend en la raiz del proyecto 
+2. Crear archivo server.js
+3. add express 
+    npm install --save express
+4.npm install --save-dev nodeman
+5. npm install --save body-parser
+
+//Always import HttpClientModule to handel petitions to backend 
+import { HttpClientModule } from "@angular/common/http";
+add it to imports array !!   imports: []
+
+
+
