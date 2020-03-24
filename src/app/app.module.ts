@@ -9,13 +9,15 @@ import { PostListComponent } from './posts/post-list/post-list.component';
 import { HeaderComponent } from './global/header/header.component';
 import { HttpClientModule } from "@angular/common/http";
 
-import { FormsModule } from "@angular/forms";
+//import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
 import {
   MatInputModule,
   MatCardModule,
   MatButtonModule,
   MatToolbarModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatProgressSpinnerModule
 } from "@angular/material";
 
 
@@ -32,12 +34,14 @@ import {
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
+   // FormsModule,
+   ReactiveFormsModule,
     MatInputModule,
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
+    MatProgressSpinnerModule,
     HttpClientModule
   ],
   providers: [

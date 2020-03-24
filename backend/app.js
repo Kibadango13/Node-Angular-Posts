@@ -1,49 +1,44 @@
+const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+const postsRoutes = require("./routes/posts");
 
 const app = express();
+//    "mongodb+srv://<username>:<password>@kibadangocluster-wsqh6.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true}
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, DELETE, OPTIONS"
-  );
-  next();
-});
-
-app.post("/api/posts", (req, res, next) => {
-  const post = req.body;
-  console.log(post);
-  res.status(201).json({
-    message: 'Post added successfully'
+mongoose
+  .connect(
+    "mongodb://Mikaela:1234@kibadangocluster-shard-00-00-wsqh6.mongodb.net:27017,kibadangocluster-shard-00-01-wsqh6.mongodb.net:27017,kibadangocluster-shard-00-02-wsqh6.mongodb.net:27017/test?ssl=true&replicaSet=KibadangoCluster-shard-0&authSource=admin&retryWrites=true&w=majority"
+   , {useNewUrlParser: true,useUnifiedTopology: true}
+    )
+  .then(() => {
+    console.log("Connected to database!");
+  })
+  .catch((err) => {
+    console.log(err);
   });
-});
 
-app.get("/api/posts", (req, res, next) => {
-  const posts = [
-    {
-      id: "fadf12421l",
-      title: "First server-side post",
-      content: "This is coming from the server"
-    },
-    {
-      id: "ksajflaj132",
-      title: "Second server-side post",
-      content: "This is coming from the server!"
-    }
-  ];
-  res.status(200).json({
-    message: "Posts fetched successfully!",
-    posts: posts
+
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use("/images", express.static(path.join("backend/images")));
+  
+  app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "GET, POST, PATCH, PUT, DELETE, OPTIONS"
+    );
+    next();
   });
-});
-
-module.exports = app;
+  
+  app.use("/api/posts", postsRoutes);
+  
+  module.exports = app;
+  

@@ -20,6 +20,7 @@ ng add @angular/material
 
 //git 
 git init
+git add
 git commit -m "first commit"
 git push -u origin master
 
@@ -37,4 +38,30 @@ import { HttpClientModule } from "@angular/common/http";
 add it to imports array !!   imports: []
 
 
+//Packages that connects to our database  (mongoose)
+npm install --save mongoose
 
+
+//start node server 
+npm run start:server
+
+//In another terminal start angular server 
+//npm update dont know why
+ng serve
+
+
+//routing 
+create new file 
+app-routing.module.ts
+
+
+
+// progress waiting spinner
+  MatProgressSpinnerModule
+
+
+ //reactive module // permites proper validacion  angular
+ import ReactiveFormsModule 
+
+ //Process an image  node
+ npm install --save multer
