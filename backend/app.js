@@ -4,13 +4,14 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const postsRoutes = require("./routes/posts");
+const userRoutes = require("./routes/user");
 
 const app = express();
 //    "mongodb+srv://<username>:<password>@kibadangocluster-wsqh6.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true}
 
 mongoose
   .connect(
-    "mongodb://Mikaela:1234@kibadangocluster-shard-00-00-wsqh6.mongodb.net:27017,kibadangocluster-shard-00-01-wsqh6.mongodb.net:27017,kibadangocluster-shard-00-02-wsqh6.mongodb.net:27017/test?ssl=true&replicaSet=KibadangoCluster-shard-0&authSource=admin&retryWrites=true&w=majority"
+    "mongodb://"+ process.env.MONGO_ATLAS_PW +"@kibadangocluster-shard-00-00-wsqh6.mongodb.net:27017,kibadangocluster-shard-00-01-wsqh6.mongodb.net:27017,kibadangocluster-shard-00-02-wsqh6.mongodb.net:27017/test?ssl=true&replicaSet=KibadangoCluster-shard-0&authSource=admin&retryWrites=true&w=majority"
    , {useNewUrlParser: true,useUnifiedTopology: true}
     )
   .then(() => {
@@ -29,7 +30,7 @@ mongoose
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader(
       "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization"
     );
     res.setHeader(
       "Access-Control-Allow-Methods",
@@ -39,6 +40,7 @@ mongoose
   });
   
   app.use("/api/posts", postsRoutes);
+  app.use("/api/user", userRoutes);
   
   module.exports = app;
   

@@ -21,7 +21,9 @@ ng add @angular/material
 //git 
 git init
 git add .
+
 git commit -m "first commit"
+git remote add origin https://github.com/kibadango......URL
 git push -u origin master
 
 
@@ -65,3 +67,14 @@ app-routing.module.ts
 
  //Process an image  node
  npm install --save multer
+
+
+ // validator to have a unique email address must import to model in back end  (node)--> users
+ npm install --save mongoose-unique-validator
+
+ //encrypts our password in backend 
+ npm install --save bcrypt
+
+ // create and validate token in backend 
+ npm install --save jsonwebtoken
+ 
